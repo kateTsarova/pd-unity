@@ -12,6 +12,9 @@ public class GenerateCode : MonoBehaviour
     public void ConnectWithPython()
     {
         string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
+        //string cmd = Directory.GetCurrentDirectory() + "\\Assets\\python\\sample.py";
+        //Debug.Log(cmd);
+        //string cmd = "C:\\Users\\Nata\\Desktop\\test.py";
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
         start.FileName = "C:\\Users\\Nata\\PycharmProjects\\praca_dyplomowa\\venv\\Scripts\\python.exe";
         start.Arguments = string.Format("{0}", cmd);
@@ -31,8 +34,8 @@ public class GenerateCode : MonoBehaviour
         string path = EditorUtility.OpenFolderPanel("Select Directory", "", "");
         if(path.Length > 0){
             ScreenCapture.CaptureScreenshot(path + "/out.png");
-        }
 
-        generate_btn.interactable = true;
+            generate_btn.interactable = true;
+        }
     }
 }
