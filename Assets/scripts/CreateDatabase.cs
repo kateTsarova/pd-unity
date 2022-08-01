@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using UnityEngine.UI;
 using System;
+using UnityEditor;
 // using System.Drawing.Image;
 // using System.Drawing.Rectangle;
 // using System.Drawing.Bitmap;
@@ -190,24 +191,24 @@ public class CreateDatabase : MonoBehaviour
     public void MakeGuiFromUser() {
         string guiText = "";
         
-        if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.button_count != 0 || canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button || canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox)
+        if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.button_count != 0 || canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox)
         {
             guiText = "header {\n";
 
             for(int i = 0; i < canvas.GetComponent<InterfaceMenu>().pageInterface.header.button_count; i++){
                 guiText += "btn-header";
-                if(i == canvas.GetComponent<InterfaceMenu>().pageInterface.header.button_count - 1 && !canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button && !canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox)
+                if(i == canvas.GetComponent<InterfaceMenu>().pageInterface.header.button_count - 1 && !canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox)
                     guiText += "\n";
                 else
                     guiText += ", ";
             }
 
-            if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button_active)
-                guiText += "radio_btn_active";
-            else if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox_active)
+            // if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button_active)
+            //     guiText += "radio_btn_active";
+            if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox_active)
                 guiText += "checkbox_active";
-            else if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button)
-                guiText += "radio_btn_inactive";
+            // else if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.radio_button)
+            //     guiText += "radio_btn_inactive";
             else if(canvas.GetComponent<InterfaceMenu>().pageInterface.header.checkbox)
                 guiText += "checkbox_inactive";
 
@@ -238,9 +239,9 @@ public class CreateDatabase : MonoBehaviour
                             case InterfaceMenu.Button_color.GREEN:
                                 guiText += "btn-green";
                                 break;
-                            case InterfaceMenu.Button_color.ORANGE:
-                                guiText += "btn-orange";
-                                break;
+                            // case InterfaceMenu.Button_color.ORANGE:
+                            //     guiText += "btn-orange";
+                            //     break;
                             case InterfaceMenu.Button_color.RED:
                                 guiText += "btn-red";
                                 break;
@@ -278,9 +279,9 @@ public class CreateDatabase : MonoBehaviour
                         case InterfaceMenu.Button_color.GREEN:
                             guiText += "btn-green";
                             break;
-                        case InterfaceMenu.Button_color.ORANGE:
-                            guiText += "btn-orange";
-                            break;
+                        // case InterfaceMenu.Button_color.ORANGE:
+                        //     guiText += "btn-orange";
+                        //     break;
                         case InterfaceMenu.Button_color.RED:
                             guiText += "btn-red";
                             break;
@@ -317,9 +318,9 @@ public class CreateDatabase : MonoBehaviour
                         case InterfaceMenu.Button_color.GREEN:
                             guiText += "btn-green";
                             break;
-                        case InterfaceMenu.Button_color.ORANGE:
-                            guiText += "btn-orange";
-                            break;
+                        // case InterfaceMenu.Button_color.ORANGE:
+                        //     guiText += "btn-orange";
+                        //     break;
                         case InterfaceMenu.Button_color.RED:
                             guiText += "btn-red";
                             break;
@@ -930,20 +931,23 @@ public class CreateDatabase : MonoBehaviour
 
     private void connectWithPython()
     {
-        ScreenCapture.CaptureScreenshot("C:\\Users\\Nata\\Desktop\\out\\out.png");
-        Debug.Log("connecting...");
-        string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
-        System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
-        start.FileName = "C:\\Users\\Nata\\PycharmProjects\\praca_dyplomowa\\venv\\Scripts\\python.exe";
-        start.Arguments = string.Format("{0}", cmd);
-        start.UseShellExecute = false;
-        start.RedirectStandardOutput = true;
-        using(System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
-        {
-            using(StreamReader reader = process.StandardOutput)
+        Debug.Log("hjxhtx");
+        string path = EditorUtility.OpenFolderPanel("Select Directory", "", "");
+        if(path.Length > 0){
+            ScreenCapture.CaptureScreenshot(path + "/out.png");
+            string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
+            System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
+            start.FileName = "C:\\Users\\Nata\\PycharmProjects\\praca_dyplomowa\\venv\\Scripts\\python.exe";
+            start.Arguments = string.Format("{0}", cmd);
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using(System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
             {
-                string result = reader.ReadToEnd();
-                Console.Write(result);
+                using(StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    Console.Write(result);
+                }
             }
         }
     }

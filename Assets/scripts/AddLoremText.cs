@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomizeText : MonoBehaviour
+public class AddLoremText : MonoBehaviour
 {
     public int len;
     public Color color = Color.red;
