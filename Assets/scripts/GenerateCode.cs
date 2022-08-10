@@ -9,14 +9,26 @@ public class GenerateCode : MonoBehaviour
     private string path;
     public Button generate_btn;
 
+    public string AddQuotesIfRequired(string path)
+    {
+        return !string.IsNullOrWhiteSpace(path) ? 
+            path.Contains(" ") && (!path.StartsWith("\"") && !path.EndsWith("\"")) ? 
+                "\"" + path + "\"" : path : 
+                string.Empty;
+    }
+
     public void ConnectWithPython()
     {
-        string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
-        //string cmd = Directory.GetCurrentDirectory() + "\\Assets\\python\\sample.py";
-        //Debug.Log(cmd);
-        //string cmd = "C:\\Users\\Nata\\Desktop\\test.py";
+        // string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
+        // string cmd = "C:\\Users\\Nata\\Desktop\\sample.py";
+        string cmd = AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\Assets\\python\\sample.py");
+        // string cmd = AddQuotesIfRequired(@"D:\\semestr 7\\test.py");
+        // cmd = AddQuotesIfRequired(cmd);
+        // string cmd = "C:\\Users\\Nata\\Desktop\\out\\test.py";
+        Debug.Log(cmd);
+        // string cmd = "C:\\Users\\Nata\\Desktop\\test.py";
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
-        start.FileName = "C:\\Users\\Nata\\PycharmProjects\\praca_dyplomowa\\venv\\Scripts\\python.exe";
+        start.FileName = "python.exe";
         start.Arguments = string.Format("{0}", cmd);
         start.UseShellExecute = false;
         start.RedirectStandardOutput = true;
@@ -29,6 +41,7 @@ public class GenerateCode : MonoBehaviour
             }
         }
     }
+    
     public void SavePNG()
     {
         string path = EditorUtility.OpenFolderPanel("Select Directory", "", "");

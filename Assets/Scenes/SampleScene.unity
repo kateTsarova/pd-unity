@@ -6821,7 +6821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &687605429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6926,7 +6926,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 238742009}
         m_TargetAssemblyTypeName: InterfaceMenu, Assembly-CSharp
-        m_MethodName: change_button_color
+        m_MethodName: ChangeButtonColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 687605432}
@@ -14530,7 +14530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1574100970
 RectTransform:
   m_ObjectHideFlags: 0
