@@ -19,17 +19,11 @@ public class GenerateCode : MonoBehaviour
 
     public void ConnectWithPython()
     {
-        // string cmd = "D:\\again\\pix2code-master\\pix2code-master\\model\\sample.py";
-        // string cmd = "C:\\Users\\Nata\\Desktop\\sample.py";
-        string cmd = AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\Assets\\python\\sample.py");
-        // string cmd = AddQuotesIfRequired(@"D:\\semestr 7\\test.py");
-        // cmd = AddQuotesIfRequired(cmd);
-        // string cmd = "C:\\Users\\Nata\\Desktop\\out\\test.py";
-        Debug.Log(cmd);
-        // string cmd = "C:\\Users\\Nata\\Desktop\\test.py";
+        string cmd = AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\python\\sample.py");
+        // string cmd = "C:\\Users\\Nata\\Desktop\\python\\sample.py";
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
         start.FileName = "python.exe";
-        start.Arguments = string.Format("{0}", cmd);
+        start.Arguments = string.Format("{0} {1}", cmd, path);
         start.UseShellExecute = false;
         start.RedirectStandardOutput = true;
         using(System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
