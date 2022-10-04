@@ -135,7 +135,7 @@ public class InterfaceMenu : MonoBehaviour
         {
             current_header_button++;
             header_buttons[current_header_button].gameObject.SetActive(true);
-            if (current_header_button + 1 == header_buttons.Length)
+            if (current_header_button + 1 == max_button_count)
                 add_header_btn.interactable = false;
             delete_header_btn.interactable = true;
             pageInterface.header.button_count++;

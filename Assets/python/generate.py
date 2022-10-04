@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
 from __future__ import absolute_import
-__author__ = 'Tony Beltramelli - www.tonybeltramelli.com'
 
 import os
 import sys
@@ -12,8 +11,7 @@ from classes.model.pix2code import *
 argv = sys.argv[1:]
 
 if len(argv) < 4:
-    print("Error: not enough argument supplied:")
-    print("generate.py <trained weights path> <trained model name> <input image> <output path> <search method (default: greedy)>")
+    print("Error: not enough argument supplied")
     exit(0)
 else:
     trained_weights_path = argv[0]

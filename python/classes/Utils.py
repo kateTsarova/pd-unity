@@ -18,6 +18,15 @@ class Utils:
     @staticmethod
     def get_preprocessed_img(img_path, image_size):
         img = cv2.imread(img_path)
+        img = cv2.resize(img, (1366, 660))
+
+        y = 0
+        x = 220
+        h = 660
+        w = 1366 - x
+        img2 = img[y:y + h, x:x + w]
+        cv2.imwrite(img_path, img2)
+
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         y = 0
