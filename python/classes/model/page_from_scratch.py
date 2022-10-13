@@ -7,13 +7,13 @@ from .Config import *
 from keras.models import model_from_json
 
 
-class pix2code():
+class page_from_scratch():
     def __init__(self, input_shape, output_size, output_path):
         self.model = None
         self.input_shape = input_shape
         self.output_size = output_size
         self.output_path = output_path
-        self.name = "p2c"
+        self.name = "pfs"
 
         image_model = Sequential()
         image_model.add(Conv2D(32, (3, 3), padding='valid', activation='relu', input_shape=input_shape))

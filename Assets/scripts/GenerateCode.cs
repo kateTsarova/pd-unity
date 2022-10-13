@@ -19,9 +19,7 @@ public class GenerateCode : MonoBehaviour
 
     public void ConnectWithPython()
     {
-        string cmd = AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\python\\sample.py");
-        Debug.Log(cmd);
-        // string cmd = "C:\\Users\\Nata\\Desktop\\python\\sample.py";
+        string cmd = AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\python\\generate_page.py");
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
         start.FileName = "python.exe";
         start.Arguments = string.Format("{0} {1}", cmd, path);
@@ -39,14 +37,12 @@ public class GenerateCode : MonoBehaviour
     
     public void SavePNG()
     {
-        // string path = EditorUtility.OpenFolderPanel("Select Directory", "", "");
-        // if(path.Length > 0){
-        // Debug.Log(AddQuotesIfRequired(Directory.GetCurrentDirectory() + "\\python\\result\\out.png"));
-        // Debug.Log(Directory.GetCurrentDirectory() + "\\python\\result\\out.png");
-        ScreenCapture.CaptureScreenshot(Directory.GetCurrentDirectory() + "\\python\\result\\out.png");
-        // ScreenCapture.CaptureScreenshot("D:\\semestr 7\\praca dyplomowa\\unity\\praca\\python\\result\\out.png");
+        string filepath = EditorUtility.OpenFolderPanel("Select Directory", "", "");
+        if(filepath.Length > 0){
+            path = filepath;
+            ScreenCapture.CaptureScreenshot(filepath + "/out.png");
 
-        generate_btn.interactable = true;
-        // }
+            generate_btn.interactable = true;
+        }
     }
 }

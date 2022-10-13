@@ -37,7 +37,6 @@ class Utils:
 
         img = cv2.resize(img, (image_size, image_size))
         img = img.reshape(img.shape[0], img.shape[1], 1)
-        cv2.imwrite('C:\\Users\\Nata\\Desktop\\s.png', img)
         img = img.astype('float32')
         img /= 255
         return img
